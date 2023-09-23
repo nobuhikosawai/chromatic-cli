@@ -102,6 +102,7 @@ async function run() {
     const autoAcceptChanges = getInput('autoAcceptChanges');
     const branchName = getInput('branchName');
     const buildScriptName = getInput('buildScriptName');
+    const commitSha = getInput('commitSha');
     const debug = getInput('debug');
     const diagnostics = getInput('diagnostics');
     const dryRun = getInput('dryRun');
@@ -128,7 +129,7 @@ async function run() {
     const junitReport = getInput('junitReport');
 
     process.env.CHROMATIC_ACTION = 'true';
-    process.env.CHROMATIC_SHA = sha;
+    process.env.CHROMATIC_SHA = commitSha || sha;
     process.env.CHROMATIC_BRANCH = branchName || branch;
     process.env.CHROMATIC_SLUG = repositorySlug || slug;
     if (mergeCommit) {
